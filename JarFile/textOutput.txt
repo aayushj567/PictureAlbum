@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+style
+.myDiv {
+ background-color: lightblue;
+ text-align: left;
+}
+<title>CS5004 Shapes Album Viewer</title>
+</head>
+<body>

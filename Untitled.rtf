@@ -1,0 +1,48 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww38100\viewh17980\viewkind1
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+README FOR FINAL PROJECT CS5004\
+Submitted by: Aayush Jaiswal\
+\
+
+\f1\b \ul MODEL\
+\
+
+\f0\b0 \ulnone  - The model contains two Interfaces IShape and ISnapshot. The IShape interface is used for creation of two shapes Rectangle and Ovals but it supports addition of new shapes as long as they adhere to the IShape interface. The abstract class Shape contains all the common methods of IShape objects like getters and setters for dimensions and position. Each IShape also has a type(like rectangle, oval, etc.) and it also has a name that are both Strings.\
+\
+-  Each IShape also owns a shapeColor object which is the rgb value of the color of the shape like (0,30, 190). The values can range from 0 to 255. shapeColor objects also have a getter and setter.\
+\
+- The other interface in the model ISnapshot is an object which contains an array list of IShapes, a unique string ID, and a timestamp. Whenever a Snapshot is created, the object stores the date and time as its ID and timestamp.\
+\
+- Finally, the shapeAlbum class is what holds an album of IShapes. A shapeAlbum object has an array list of ISnapshots and an array list of IShapes. shapeAlbums have methods to add shapes, remove shapes, and change shape attributes. The album also has a takeSnapshot method which will generate a Snapshot which can be stored in the array list. In this manner, the list of Snapshots stores the state of the album at the time a snapshot is taken.\
+\
+
+\f1\b \ul CONTROLLER\
+\
+
+\f0\b0 \ulnone - The controller has a FileParserForModel class that reads a .txt file with the specifications for a shape album and relays that information to the model so that it is able to create an album and add, remove and edit shapes.\
+ \
+- The FileParserForModel makes use of updateAlbum class to instruct the model on what actions to perform.\
+\
+- The arguments checker validates the command line arguments that are provided by the user and creates a hashmap that can be used to retrieve the needed arguments in the program. Extensive checking is done for the type of input and output files too as web view requires an output file.\
+ \
+- There is also a talkToView class that provides the necessary data for the View to produce either a web view or graphical view. In my implementation, both views require : a HashMap which maps Snapshot ID to list of IShapes; an array list of Snapshot IDs in the order in which they are created; two integers that will be the canvas size. talkToView generates the hash map and the list of snapshot IDs. Note:  even though the hashmap contains all the snapshot id for an album, they are not in order hence the use of a separate array list which stores the ids in order. The method in talk to view requires a shape album to produce the hash map and the array list.\
+\
+- The GenerateViews class is where the required data for the view to be produced is captured and provided to either the swing view or web view. The runMyProgram in this class takes the validates the command line arguments by passing it ArgumentsChecker and then passes the arguments to first generate the Model and then generate one of the views. The PhotoAlbumMain class which is the main entry to my program simply runs runMyProgramMethod with the args provided.\
+\
+
+\f1\b \ul VIEW\
+
+\f0\b0 \ulnone \
+- The SwingView package contains the Java Swing elements to produce a swing view. I have used 4 classes here. The myFrame class is the responsible for producing the actual java swing window. The PREV and NEXT are classes extending from JButton and are are the actual buttons inside myFrame.\
+\
+-  The NEXT button remembers the index it is on and based on that index it can talk to the panel in frame responsible for producing the images - shapesPanel.\
+\
+ - The PREV button has the same functionality as NEXT button and it changes the index of the NEXT button if it is clicked. The SELECT button makes use of the action performed by both the NEXT and PREV buttons.\
+\
+- The html text for the web view is generated in the HtmlGenerator class as String Builder. It then passes the string builder to a file writer function that writes onto an html output file so it can be viewed in the browser. The html for drawing shapes is handled by shapeDrawerSVG.}
